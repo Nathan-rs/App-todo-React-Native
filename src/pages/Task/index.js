@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Button, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons"
 
-import database from "../../config/firebaseconfig";
+import firebase from "../../config/firebaseconfig";
 import styles from "./style"
 
 
 export default function Task({ navigation }){
     const [task, setTask] = useState([])
+    const database = firebase.firestore()
 
     function deleteTask(id){
         database.collection("todo").doc(id).delete()
@@ -30,18 +31,9 @@ export default function Task({ navigation }){
                 data={task}
                 renderItem={( {item} )=>{
                     return (
+                        
+                        // dados do banco de dados
                         <View style={styles.Tasks}>
-                            <TouchableOpacity 
-                                style={styles.deleteTask}
-                                onPress={() =>{ deleteTask(item.id) }}
-                            >
-                                <FontAwesome
-                                    name="star"
-                                    size={23}
-                                    color="#F92e6A"
-                                >
-                                </FontAwesome>
-                            </TouchableOpacity>
                             <Text
                                 style={styles.DescriptionTask}
                                 onPress={()=>{
@@ -53,6 +45,20 @@ export default function Task({ navigation }){
                             >
                             {item.description}
                             </Text>
+
+                            {/* Botão de lixeria  */}
+                            <TouchableOpacity 
+                                style={styles.deleteTask}
+                                onPress={() =>{ deleteTask(item.id) }}
+                            >
+                                <FontAwesome
+                                    name="trash"
+                                    size={23}
+                                    color="#F20544"
+                                >
+                                </FontAwesome>
+                            </TouchableOpacity>
+                            
                         </View>
                     )
                 }}

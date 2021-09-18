@@ -35,7 +35,7 @@ export default function App() {
           name="Details"
           component={Login}
           options={{
-            headerTintColor: "#f92e6a"
+            headerTintColor: "#F92e6a"
           }}
         />
 

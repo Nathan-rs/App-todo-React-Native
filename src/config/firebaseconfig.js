@@ -2,16 +2,15 @@ import firebase from "firebase";
 import "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDMc0k46FQI-l4ZvK-3pQeG6yiFYtZxEmw",
-    authDomain: "todo-26b1c.firebaseapp.com",
-    projectId: "todo-26b1c",
-    storageBucket: "todo-26b1c.appspot.com",
-    messagingSenderId: "348927663428",
-    appId: "1:348927663428:web:f38d1f182a64684d524b11"
-  };
-  
-  // Initialize Firebase
+  apiKey: "AIzaSyBQZ8_37dS_7pFmPsrSx7iG0XJoh1XM3aI",
+  authDomain: "authentication-66de3.firebaseapp.com",
+  projectId: "authentication-66de3",
+  storageBucket: "authentication-66de3.appspot.com",
+  messagingSenderId: "479587559309",
+  appId: "1:479587559309:web:0d4873d00d0eba04ce3fc4"
+};
+
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const database = firebase.firestore()
-export default database
+export default firebase
