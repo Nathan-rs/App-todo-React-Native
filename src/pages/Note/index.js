@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, TouchableOpacity, FlatList } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons"
 
 import firebase from "../../config/firebaseconfig";
 import styles from "./style"
 
 
-export default function Task({ navigation }){
+export default function Note({ navigation, route}){
     const [task, setTask] = useState([])
     const database = firebase.firestore()
 
+    function logout(){
+        firebase.auth().signOut().then(() => {
+            navigation.navigate('Login')
+          }).catch((error) => {
+
+          });
+          
+    }
+
     function deleteTask(id){
-        database.collection("todo").doc(id).delete()
+        database.collection(route.params.idUser).doc(id).delete()
     }
 
     useEffect(()=>{
-        database.collection("todo").onSnapshot((query)=>{
+        database.collection(route.params.idUser).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({ ...doc.data(), id: doc.id })
@@ -37,9 +46,10 @@ export default function Task({ navigation }){
                             <Text
                                 style={styles.DescriptionTask}
                                 onPress={()=>{
-                                    navigation.navigate("Details",{
+                                    navigation.navigate('Details',{
                                         id: item.id,
                                         description: item.description,
+                                        idUser: route.params.idUser
                                     })
                                 }}
                             >
@@ -65,9 +75,24 @@ export default function Task({ navigation }){
             />
             <TouchableOpacity style 
                 style={styles.buttonNewTask}
-                onPress={() => navigation.navigate("New Task")}
+                onPress={() => navigation.navigate('New Note', {idUser: route.params.idUser})}
             >
                 <Text style={styles.iconButton}>+</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            style={styles.btnLogout}
+            onPress={logout}
+            >
+                <Text style={styles.iconLogout}>
+                    <MaterialCommunityIcons
+                    name="location-exit"
+                    size={23}
+                    color="#fff"
+                    >
+                        
+                    </MaterialCommunityIcons>
+                </Text>
             </TouchableOpacity>
         </View>
     );

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 48,
-        color: "#3171F7",
+        color: "#30B8B2",
         marginBottom: 10,
         fontWeight: "bold",
     },
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         padding: 10,
         height: 50,
         borderBottomWidth: 1,
-        borderColor: "#3171F7",
+        borderColor: "#30B8B2",
         marginLeft: "auto",
         marginRight: "auto",
         color: "#4d5156",
@@ -37,24 +37,24 @@ const styles = StyleSheet.create({
         color: "#bdbdbd",
         fontSize: 16,
     },
-    buttonLogin: {
+    buttonRegister: {
         width: 200,
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#3171F7",
+        backgroundColor: "#30B8B2",
         borderRadius: 50,
         marginTop: 30,
     },
-    textButtonLogin: {
+    textButtonRegister: {
         color: "#fff"
     },
-    registration: {
+    login: {
         marginTop: 20,
         color: "#4d5156"
     },
-    linkSubscribe: {
-        color: "#30B8B2",
+    linkLogin: {
+        color: "#3171F7",
         fontSize: 16,
     }
 });

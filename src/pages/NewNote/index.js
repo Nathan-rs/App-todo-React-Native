@@ -3,21 +3,18 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import firebase from "../../config/firebaseconfig";
 import { FontAwesome } from "@expo/vector-icons"
 
+import styles from "../NewNote/style";
 
-import styles from "../NewTask/style";
-
-
-
-export default function NewTask( { navigation } ){
+export default function NewNote( { navigation, route } ){
     const [description, setDescription] = useState(null)
     const database = firebase.firestore()
 
-    function addTask(){
-        database.collection("todo").add(({
-            description: description,
-            status: false
+    
+    function addNote(){
+        database.collection(route.params.idUser).add(({
+            description: description
         }))
-        navigation.navigate("Task")
+        navigation.navigate('Note')
     }
 
     return (
@@ -33,7 +30,7 @@ export default function NewTask( { navigation } ){
             <TouchableOpacity 
                 style={styles.iconButton}
                 onPress={() =>{
-                    addTask()
+                    addNote()
                 }}
             >
                 <FontAwesome

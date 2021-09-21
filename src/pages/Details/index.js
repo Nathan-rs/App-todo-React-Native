@@ -12,10 +12,10 @@ export default function Details( {navigation, route} ){
     const idTask = route.params.id
 
     function editTask(description, id){
-        database.collection("todo").doc(id).update({
+        database.collection(route.params.idUser).doc(id).update({
             description: descriptionEdit,
         })
-        navigation.navigate("Task")
+        navigation.navigate('Note')
     }
 
     return (
